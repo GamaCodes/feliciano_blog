@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, ScrollRestoration } from "react-router-dom";
 import {
     Drawer,
     DrawerBody,
@@ -86,6 +86,7 @@ export default function Root() {
         <div id="home" className="main-container">
             <Outlet />
         </div>
+        <ScrollRestoration />
     </div>
   );
 }

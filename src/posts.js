@@ -10,6 +10,13 @@ export async function getPosts() {
     return posts
 }
 
+export async function getCategories() {
+    let categories = await axios.get('https://felicianocastro.org/worpress/blog/wp-json/wp/v2/categories?_fields[]=id&_fields[]=name')
+    .then((response) => response.data
+    )
+    return categories
+}
+
 export async function getPost(id) {
     let post = await axios.get(`https://felicianocastro.org/worpress/blog/wp-json/wp/v2/posts/${id}`)
     .then((response) => response.data
