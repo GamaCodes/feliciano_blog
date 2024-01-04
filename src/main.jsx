@@ -5,8 +5,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Root from "./routes/root";
-import Home, { loader as homeLoader }  from "./routes/home";
-import Construction from "./routes/construction";
+import Home, { loader as mainPostsLoader }  from "./routes/home";
+import Biography from "./routes/biography";
 import Search from "./routes/search";
 import ErrorPage from "./routes/error";
 import Post, { loader as postLoader }  from "./routes/post";
@@ -21,17 +21,11 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      /*
       {
         path: "/",
         element: <Home />,
-        loader: homeLoader,
+        loader: mainPostsLoader,
       },
-      */
-     {
-       path: "/",
-       element: <Construction />
-     },
       {
         path: "posts",
         element: <Posts />,
@@ -45,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "search",
         element: <Search />,
+      },
+      {
+        path: "biography",
+        element: <Biography />,
       },
     ],
   },

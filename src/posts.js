@@ -1,12 +1,23 @@
 import axios from 'axios'
-//import sortBy from "sort-by";
 
-export async function getPosts() {
-    let posts = await axios.get('https://felicianocastro.org/worpress/blog/wp-json/wp/v2/posts')
+export async function getMainPosts() {
+    let stickyPosts = await axios.get('https://felicianocastro.org/worpress/blog/wp-json/wp/v2/posts?sticky=true&_fields[]=title&_fields[]=date&_fields[]=id&_fields[]=excerpt&_fields[]=jetpack_featured_media_url')
     .then((response) => response.data
     )
+    let notStickyPosts = await axios.get('https://felicianocastro.org/worpress/blog/wp-json/wp/v2/posts?sticky=false&_fields[]=title&_fields[]=date&_fields[]=id&_fields[]=excerpt&_fields[]=jetpack_featured_media_url')
+    .then((response) => response.data
+    )
+    let mainPosts = {
+        'stickyPosts': stickyPosts,
+        'notStickyPosts': notStickyPosts
+    }
+    return mainPosts
+}
 
-    //return contacts.sort(sortBy("last", "createdAt"));
+export async function getPosts() {
+    let posts = await axios.get('https://felicianocastro.org/worpress/blog/wp-json/wp/v2/posts?_fields[]=title&_fields[]=date&_fields[]=id&_fields[]=excerpt&_fields[]=jetpack_featured_media_url')
+    .then((response) => response.data
+    )
     return posts
 }
 
